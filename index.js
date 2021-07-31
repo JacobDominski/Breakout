@@ -9,6 +9,11 @@ const config = {
 
     ballXSpeed: 5,
     ballYSpeed: 5,
+
+    timeElapsed: 0,
+    pi: 3.141592653589793,
+
+    random: (seed, multiplier, increment, modulus) => (multiplier * seed + increment) % modulus
 }
 
 //function that runs when the window loads
@@ -95,6 +100,8 @@ const render = (ctx, p, b, bricks) => {
 
 //basically our game loop
 const animate = (ctx, p, b, bricks, controller) => {
+    //update the time elapsed for seeds in the random function
+    config.timeElapsed ++
     //draws all the objects in our game
     render(ctx, p, b, bricks)
     //runs to check if we press A or D
