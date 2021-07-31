@@ -21,10 +21,12 @@ class ball {
         //after 1000 milliseconds (1 second)
         setTimeout(()=>{
             //get the value of 1 or -1 (50/50 chance)
-            let dir = (Math.random() > 0.5) ? -1 : 1
+            let dir = (config.random(config.timeElapsed, 1664525, 1013904223, 232) > 70) ? -1 : 1
             //apply the change to the direction x
             this.dx = config.ballXSpeed * dir
             this.dy = config.ballYSpeed
+            //reset time elapsed
+            config.timeElapsed = 0
         }, 1000)
     }
 
@@ -34,7 +36,7 @@ class ball {
         //tells the computer we are drawing a shape
         this.ctx.beginPath();
         //the arc draws a circle
-        this.ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI, false)
+        this.ctx.arc(this.x, this.y, this.r, 0, 2 * config.pi, false)
         //we fill the circle pastel green
         this.ctx.fillStyle = '#f9b400';
         this.ctx.fill();
